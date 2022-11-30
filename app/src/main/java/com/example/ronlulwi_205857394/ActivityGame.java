@@ -22,7 +22,7 @@ public class ActivityGame extends AppCompatActivity {
 
     final int COLS = 3;
     final int ROWS = 4;
-    final int DELAY = 1000;
+    final int DELAY = 800;
 
     private ExtendedFloatingActionButton game_BTN_right;
     private ExtendedFloatingActionButton game_BTN_left;
