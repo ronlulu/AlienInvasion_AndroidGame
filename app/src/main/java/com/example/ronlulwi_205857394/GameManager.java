@@ -19,6 +19,7 @@ public class GameManager {
         this.activeEnemies = new ArrayList<>();
         this.lives = lives;
         playerCurrentCol = 1;
+        enemyLastLocation =-1;
         score = 0;
     }
 
