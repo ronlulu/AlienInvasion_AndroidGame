@@ -23,7 +23,9 @@
      android:layout_height="0dp"
      android:layout_weight="1">
 
-        <com.google.android.material.textfield.TextInputEditText
+
+
+        <TextView
             android:id="@+id/game_LBL_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -31,13 +33,9 @@
             android:layout_centerVertical="true"
             android:textColor="@color/black"
             android:layout_alignParentLeft="true"
-            android:textSize="30sp">
+            android:textSize="30sp"/>
 
-        </com.google.android.material.textfield.TextInputEditText>
-
-
-
-            <com.google.android.material.imageview.ShapeableImageView
+        <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_heart01"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
@@ -46,7 +44,7 @@
                 app:srcCompat="@drawable/ic_heart">
 
             </com.google.android.material.imageview.ShapeableImageView>
-            <com.google.android.material.imageview.ShapeableImageView
+        <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/main_IMG_heart02"
                 android:layout_width="40dp"
                 android:layout_height="match_parent"
@@ -54,7 +52,6 @@
                 app:srcCompat="@drawable/ic_heart">
 
             </com.google.android.material.imageview.ShapeableImageView>
-
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/main_IMG_heart03"
             android:layout_width="40dp"
@@ -69,24 +66,17 @@
         </com.google.android.material.imageview.ShapeableImageView>
 
 
-
-
-
-
-
-
-
-
- </RelativeLayout>
+    </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9.5">
+        android:layout_weight="9.5"
+        >
 
         <RelativeLayout
             android:id="@+id/game_LYO_column0"
-            android:layout_width="140dp"
+            android:layout_width="79dp"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true">
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -131,6 +121,22 @@
                     android:id="@+id/game_IMG_enemy40"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy50"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy60"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_plane"
                     android:layout_weight="1">
 
@@ -140,7 +146,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/game_LYO_column1"
-            android:layout_width="140dp"
+            android:layout_width="79dp"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/game_LYO_column0">
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -184,6 +190,22 @@
                     android:id="@+id/game_IMG_enemy41"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy51"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy61"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_plane"
                     android:layout_weight="1">
 
@@ -193,7 +215,7 @@
         </RelativeLayout>
         <RelativeLayout
             android:id="@+id/game_LYO_column2"
-            android:layout_width="140dp"
+            android:layout_width="79dp"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/game_LYO_column1">
             <androidx.appcompat.widget.LinearLayoutCompat
@@ -237,6 +259,22 @@
                     android:id="@+id/game_IMG_enemy42"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy52"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy62"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     app:srcCompat="@drawable/ic_plane"
                     android:layout_weight="1">
 
@@ -245,6 +283,146 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/game_LYO_column3"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/game_LYO_column2">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy03"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy23"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy33"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy43"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy53"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy63"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_plane"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/game_LYO_column4"
+            android:layout_width="79dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/game_LYO_column3">
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy04"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy34"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy44"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy54"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_ufo"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/game_IMG_enemy64"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_plane"
+                    android:layout_weight="1">
+
+                </com.google.android.material.imageview.ShapeableImageView>
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <RelativeLayout

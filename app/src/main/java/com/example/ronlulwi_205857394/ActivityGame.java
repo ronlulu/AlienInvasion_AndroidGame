@@ -3,11 +3,14 @@ package com.example.ronlulwi_205857394;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import android.content.Context;
+import android.media.MediaPlayer;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -20,8 +23,8 @@ import java.util.TimerTask;
 
 public class ActivityGame extends AppCompatActivity {
 
-    final int COLS = 3;
-    final int ROWS = 4;
+    final int COLS = 5;
+    final int ROWS = 6;
     final int DELAY = 800;
 
     private ExtendedFloatingActionButton game_BTN_right;
@@ -33,9 +36,10 @@ public class ActivityGame extends AppCompatActivity {
     private ShapeableImageView[] game_IMG_hearts;
     private ArrayList<Position> oldUI;
 
-    private TextInputEditText game_LBL_score;
+    private TextView game_LBL_score;
     private GameManager gameManager;
     private Timer timer;
+
 
 
     @Override
@@ -67,13 +71,15 @@ public class ActivityGame extends AppCompatActivity {
 
         // find game mat
         enemiesMat = new ShapeableImageView[][]{
-                {findViewById(R.id.game_IMG_enemy00), findViewById(R.id.game_IMG_enemy01), findViewById(R.id.game_IMG_enemy02)},
-                {findViewById(R.id.game_IMG_enemy10), findViewById(R.id.game_IMG_enemy11), findViewById(R.id.game_IMG_enemy12)},
-                {findViewById(R.id.game_IMG_enemy20), findViewById(R.id.game_IMG_enemy21), findViewById(R.id.game_IMG_enemy22)},
-                {findViewById(R.id.game_IMG_enemy30), findViewById(R.id.game_IMG_enemy31), findViewById(R.id.game_IMG_enemy32)}};
+                {findViewById(R.id.game_IMG_enemy00), findViewById(R.id.game_IMG_enemy01), findViewById(R.id.game_IMG_enemy02), findViewById(R.id.game_IMG_enemy03), findViewById(R.id.game_IMG_enemy04)},
+                {findViewById(R.id.game_IMG_enemy10), findViewById(R.id.game_IMG_enemy11), findViewById(R.id.game_IMG_enemy12), findViewById(R.id.game_IMG_enemy13), findViewById(R.id.game_IMG_enemy14)},
+                {findViewById(R.id.game_IMG_enemy20), findViewById(R.id.game_IMG_enemy21), findViewById(R.id.game_IMG_enemy22), findViewById(R.id.game_IMG_enemy23), findViewById(R.id.game_IMG_enemy24)},
+                {findViewById(R.id.game_IMG_enemy30), findViewById(R.id.game_IMG_enemy31), findViewById(R.id.game_IMG_enemy32), findViewById(R.id.game_IMG_enemy33), findViewById(R.id.game_IMG_enemy34)},
+                {findViewById(R.id.game_IMG_enemy40), findViewById(R.id.game_IMG_enemy41), findViewById(R.id.game_IMG_enemy42), findViewById(R.id.game_IMG_enemy43), findViewById(R.id.game_IMG_enemy44)},
+                {findViewById(R.id.game_IMG_enemy50), findViewById(R.id.game_IMG_enemy51), findViewById(R.id.game_IMG_enemy52), findViewById(R.id.game_IMG_enemy53), findViewById(R.id.game_IMG_enemy54)} };
 
         // find playerMat
-        playerMat = new ShapeableImageView[] {findViewById(R.id.game_IMG_enemy40), findViewById(R.id.game_IMG_enemy41), findViewById(R.id.game_IMG_enemy42)};
+        playerMat = new ShapeableImageView[] {findViewById(R.id.game_IMG_enemy60), findViewById(R.id.game_IMG_enemy61), findViewById(R.id.game_IMG_enemy62), findViewById(R.id.game_IMG_enemy63), findViewById(R.id.game_IMG_enemy64)};
     }
 
     private void initViews() {
@@ -112,7 +118,7 @@ public class ActivityGame extends AppCompatActivity {
 
     private void createFirstUFO() {
         oldUI = new ArrayList<>();
-        int randomCol = new Random().nextInt(3);
+        int randomCol = new Random().nextInt(COLS);
         oldUI.add(new Position(0,randomCol));
         gameManager.setActiveEnemy(0, randomCol);
         enemiesMat[0][randomCol].setVisibility(View.VISIBLE);
@@ -122,6 +128,7 @@ public class ActivityGame extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         startTimer();
+
     }
 
     @Override
@@ -173,24 +180,15 @@ public class ActivityGame extends AppCompatActivity {
             game_IMG_hearts[lives-1].setVisibility(View.INVISIBLE);
             gameManager.setLives(-1);
         }
-        vibrate();
+        gameManager.playHitSound();
+        gameManager.vibrate();
         gameManager.setScore(-1);
         game_LBL_score.setText("score: "+gameManager.getScore());
         Toast.makeText(this, "Ouch!", Toast.LENGTH_SHORT).show();
 
     }
 
-    private void vibrate() {
-        Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-        // Vibrate for 500 milliseconds
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            v.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
-        } else {
-            //deprecated in API 26
-            v.vibrate(500);
-        }
 
 
-    }
 
 }
