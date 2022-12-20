@@ -57,8 +57,8 @@ public class GameManager {
         this.lives += lives;
     }
 
-    public void setActiveEnemy(int row, int col) {
-        activeEnemies.add(new Position(row, col));
+    public void setActiveEnemy(int row, int col, String type) {
+        activeEnemies.add(new Position(row, col, Position.types.valueOf(type)));
 
     }
 
@@ -68,17 +68,23 @@ public class GameManager {
             activeEnemies.remove(ROWS-1);
             setScore(1);
         }
-        //activeEnemies.trimToSize();
-        activeEnemies.add(0, new Position(0, new Random().nextInt(COLS)));
+        if(score%7 == 0 && score > 7)
+            if(lives < 3)
+                activeEnemies.add(0, new Position(0, new Random().nextInt(COLS), Position.types.HEART));
+            else
+                activeEnemies.add(0, new Position(0, new Random().nextInt(COLS), Position.types.COIN));
+        else
+            activeEnemies.add(0, new Position(0, new Random().nextInt(COLS), Position.types.UFO));
+
         for (int i = 1; i < activeEnemies.size(); i++) {
             activeEnemies.get(i).setRow(1);
         }
         return activeEnemies;
     }
 
-    public void playHitSound() {
+    public void playHitSound(Position.types type) {
         mBackgroundSound = new BackgroundSound();
-        mBackgroundSound.execute();
+        mBackgroundSound.execute(type);
     }
 
     public void vibrate() {
@@ -94,11 +100,22 @@ public class GameManager {
 
     }
 
-    public class BackgroundSound extends AsyncTask<Void, Void, Void> {
+    public Position.types getEnemyType(int index) {
+        return activeEnemies.get(index).getType();
+    }
+
+    public class BackgroundSound extends AsyncTask<Position.types, Void, Void> {
 
         @Override
-        protected Void doInBackground(Void... params) {
-            MediaPlayer player = MediaPlayer.create(MyApp.getAppContext(), R.raw.msc_crash_sound);
+        protected Void doInBackground(Position.types... params) {
+            Position.types myTypes = params[0];
+            MediaPlayer player;
+            if(myTypes == Position.types.UFO)
+                player = MediaPlayer.create(MyApp.getAppContext(), R.raw.msc_crash_sound);
+            else if(myTypes == Position.types.COIN)
+                player = MediaPlayer.create(MyApp.getAppContext(), R.raw.msc_coin_sound);
+            else
+                player = MediaPlayer.create(MyApp.getAppContext(), R.raw.msc_coin_sound);
             player.setLooping(false); // Set looping
             player.setVolume(4.0f, 4.0f);
             player.start();

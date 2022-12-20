@@ -2,20 +2,15 @@ package com.example.ronlulwi_205857394;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
-import android.content.Context;
-import android.media.MediaPlayer;
-import android.os.AsyncTask;
-import android.os.Build;
+
 import android.os.Bundle;
-import android.os.VibrationEffect;
-import android.os.Vibrator;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.imageview.ShapeableImageView;
-import com.google.android.material.textfield.TextInputEditText;
+
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -25,7 +20,7 @@ public class ActivityGame extends AppCompatActivity {
 
     final int COLS = 5;
     final int ROWS = 6;
-    final int DELAY = 800;
+    final int DELAY = 500;
 
     private ExtendedFloatingActionButton game_BTN_right;
     private ExtendedFloatingActionButton game_BTN_left;
@@ -119,8 +114,8 @@ public class ActivityGame extends AppCompatActivity {
     private void createFirstUFO() {
         oldUI = new ArrayList<>();
         int randomCol = new Random().nextInt(COLS);
-        oldUI.add(new Position(0,randomCol));
-        gameManager.setActiveEnemy(0, randomCol);
+        oldUI.add(new Position(0,randomCol, Position.types.UFO));
+        gameManager.setActiveEnemy(0, randomCol, "UFO");
         enemiesMat[0][randomCol].setVisibility(View.VISIBLE);
     }
 
@@ -159,19 +154,35 @@ public class ActivityGame extends AppCompatActivity {
             int col = oldUI.get(i).getCol();
             enemiesMat[row][col].setVisibility(View.INVISIBLE);
         }
+
+        if(gameManager.getPlayerCurrentCol() == gameManager.getEnemyLastLocation()){
+            if(oldUI.get(oldUI.size()-1).getType() == Position.types.COIN)
+                gainCoin();
+            else if(oldUI.get(oldUI.size()-1).getType() == Position.types.HEART)
+                gainLives();
+            else
+                takeDamage();
+        }
+
         for (int i = 0; i < newUI.size(); i++) {
             int row = newUI.get(i).getRow();
             int col = newUI.get(i).getCol();
+            Position.types currentType = gameManager.getEnemyType(i);
+            if(currentType == Position.types.HEART)
+                enemiesMat[row][col].setImageResource(R.drawable.ic_heart);
+            else if (currentType == Position.types.COIN)
+                enemiesMat[row][col].setImageResource(R.drawable.ic_coin);
+            else
+                enemiesMat[row][col].setImageResource(R.drawable.ic_ufo);
             enemiesMat[row][col].setVisibility(View.VISIBLE);
         }
         oldUI.removeAll(oldUI);
         for (int i = 0; i < newUI.size(); i++) {
-            oldUI.add(new Position(newUI.get(i).getRow(), newUI.get(i).getCol()));
+            oldUI.add(new Position(newUI.get(i).getRow(), newUI.get(i).getCol(), newUI.get(i).getType()));
         }
         game_LBL_score.setText("score: "+gameManager.getScore());
 
-        if(gameManager.getPlayerCurrentCol() == gameManager.getEnemyLastLocation())
-            takeDamage();
+
     }
 
     private void takeDamage() {
@@ -180,12 +191,28 @@ public class ActivityGame extends AppCompatActivity {
             game_IMG_hearts[lives-1].setVisibility(View.INVISIBLE);
             gameManager.setLives(-1);
         }
-        gameManager.playHitSound();
+        gameManager.playHitSound(Position.types.UFO);
         gameManager.vibrate();
         gameManager.setScore(-1);
-        game_LBL_score.setText("score: "+gameManager.getScore());
+        game_LBL_score.setText("score: " + gameManager.getScore());
         Toast.makeText(this, "Ouch!", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void gainLives(){
+        int lives = gameManager.getLives();
+        if(lives < 3){
+            gameManager.setLives(1);
+            game_IMG_hearts[lives].setVisibility(View.VISIBLE);
+        }
+        gameManager.playHitSound(Position.types.HEART);
+        Toast.makeText(this, "Good Job!", Toast.LENGTH_SHORT).show();
+    }
+
+    private void gainCoin() {
+        gameManager.setScore(5);
+        gameManager.playHitSound(Position.types.COIN);
+        Toast.makeText(this, "You gained 5 coins!", Toast.LENGTH_SHORT).show();
     }
 
 
