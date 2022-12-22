@@ -3,7 +3,9 @@ package com.example.ronlulwi_205857394;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +22,10 @@ public class ActivityGame extends AppCompatActivity {
 
     final int COLS = 5;
     final int ROWS = 6;
-    final int DELAY = 500;
-
+    int DELAY = 500;
+    boolean isActiveSensors;
+    public static final String KEY_DELAY = "KEY_SCORE";
+    public static final String KEY_SENSOR = "KEY_SENSOR";
     private ExtendedFloatingActionButton game_BTN_right;
     private ExtendedFloatingActionButton game_BTN_left;
     private AppCompatImageView game_IMG_background;
@@ -35,13 +39,17 @@ public class ActivityGame extends AppCompatActivity {
     private GameManager gameManager;
     private Timer timer;
 
+    private MySensor mySensor;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-
+        Intent previousIntent = getIntent();
+        DELAY = previousIntent.getExtras().getInt(KEY_DELAY);
+        isActiveSensors = previousIntent.getExtras().getBoolean(KEY_SENSOR);
         gameManager = new GameManager(ROWS, COLS, 3);
         findViews();
         Glide.with(ActivityGame.this)
@@ -49,12 +57,39 @@ public class ActivityGame extends AppCompatActivity {
                         .into(game_IMG_background);
         initViews();
         timer = new Timer();
+
+        mySensor = new MySensor(callBack_movement);
     }
+
+    private MySensor.CallBack_movement callBack_movement = new MySensor.CallBack_movement() {
+        @Override
+        public void moveTo(int loc) {
+            int playerCurrentCol = gameManager.getPlayerCurrentCol();
+            if(playerCurrentCol != loc)
+                if(playerCurrentCol < loc)
+                    preformPlayerMove(1, COLS-1);
+                else
+                    preformPlayerMove(-1,0);
+        }
+
+        @Override
+        public void setSpeed(int speed) {
+            if(DELAY != speed){
+                DELAY = speed;
+            }
+        }
+    };
 
     private void findViews() {
         // find buttons + score + backGround
+
         game_BTN_left = findViewById(R.id.game_BTN_left);
         game_BTN_right = findViewById(R.id.game_BTN_right);
+        if(isActiveSensors){
+            game_BTN_left.setVisibility(View.INVISIBLE);
+            game_BTN_right.setVisibility(View.INVISIBLE);
+        }
+
         game_LBL_score = findViewById(R.id.game_LBL_score);
         game_IMG_background = findViewById(R.id.game_IMG_background);
 
@@ -82,8 +117,10 @@ public class ActivityGame extends AppCompatActivity {
         game_LBL_score.setText("score: 0");
 
         // init left + right buttons
-        game_BTN_left.setOnClickListener(view -> preformPlayerMove(-1, 0));
-        game_BTN_right.setOnClickListener(view -> preformPlayerMove(1, COLS-1));
+        if(!isActiveSensors) {
+            game_BTN_left.setOnClickListener(view -> preformPlayerMove(-1, 0));
+            game_BTN_right.setOnClickListener(view -> preformPlayerMove(1, COLS - 1));
+        }
 
         // init playerMat
         for (int i = 0; i < playerMat.length; i++) {
@@ -123,23 +160,29 @@ public class ActivityGame extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         startTimer();
-
+        if(isActiveSensors)
+            mySensor.start();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         stopTimer();
+        if(isActiveSensors)
+            mySensor.stop();
     }
 
     private void startTimer() {
         timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                runOnUiThread(() -> updateUI());
-            }
-        }, DELAY, DELAY);
+        timer.schedule(new MyClass(), DELAY);
+
+    }
+
+    class MyClass extends TimerTask {
+        public void run() {
+            runOnUiThread(() -> updateUI());
+            startTimer();
+        }
     }
 
     private void stopTimer() {
@@ -214,8 +257,5 @@ public class ActivityGame extends AppCompatActivity {
         gameManager.playHitSound(Position.types.COIN);
         Toast.makeText(this, "You gained 5 coins!", Toast.LENGTH_SHORT).show();
     }
-
-
-
 
 }

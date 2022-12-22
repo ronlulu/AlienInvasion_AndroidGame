@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActivityMenu">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+    <TextView
+        android:id="@+id/menu_LBL_gameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Alien invasion"
+        android:textStyle="bold"
+        android:textSize="53dp"
+        android:textColor="#FF0000"
+        android:layout_marginBottom="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"/>
+
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_slow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:backgroundTint="#7000326E"
+        android:text="Slow"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_fast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:backgroundTint="#7000326E"
+        android:text="Fast"
+        android:layout_below="@id/menu_BTN_slow"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_sensors"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:backgroundTint="#7000326E"
+        android:text="Sensors"
+        android:layout_below="@id/menu_BTN_fast"/>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/menu_BTN_top10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:backgroundTint="#7000326E"
+        android:text="Top Scores"
+        android:layout_below="@id/menu_BTN_sensors"/>
+
+    </RelativeLayout>
+</RelativeLayout>
