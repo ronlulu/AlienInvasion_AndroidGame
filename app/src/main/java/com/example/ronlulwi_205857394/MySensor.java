@@ -5,7 +5,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
+
 
 public class MySensor {
 
@@ -49,7 +49,6 @@ public class MySensor {
     };
 
     private void calculateMovement(float x, float y) {
-        // TODO calc movement !
         int nextMove = 0;
         int speed = 0;
 

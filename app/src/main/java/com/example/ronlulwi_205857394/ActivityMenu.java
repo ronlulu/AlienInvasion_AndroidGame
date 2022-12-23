@@ -13,7 +13,7 @@ import com.google.android.material.button.MaterialButton;
 public class ActivityMenu extends AppCompatActivity {
 
     private AppCompatImageView menu_IMG_background;
-    private MaterialButton menu_BTN_fast, menu_BTN_slow, menu_BTN_sensors, menu_BTN_top10;
+    private MaterialButton menu_BTN_fast, menu_BTN_slow, menu_BTN_sensors, menu_BTN_top10, menu_BTN_exitGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,34 +34,17 @@ public class ActivityMenu extends AppCompatActivity {
         menu_BTN_slow= findViewById(R.id.menu_BTN_slow);
         menu_BTN_sensors= findViewById(R.id.menu_BTN_sensors);
         menu_BTN_top10= findViewById(R.id.menu_BTN_top10);
+        menu_BTN_exitGame= findViewById(R.id.menu_BTN_exitGame);
+
     }
 
     private void initViews() {
 
-        menu_BTN_slow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGamePage(600, false);
-            }
-        });
-        menu_BTN_fast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGamePage(300, false);
-            }
-        });
-        menu_BTN_sensors.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openGamePage(500, true);
-            }
-        });
-        menu_BTN_top10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openScorePage();
-            }
-        });
+        menu_BTN_slow.setOnClickListener(view -> openGamePage(600, false));
+        menu_BTN_fast.setOnClickListener(view -> openGamePage(300, false));
+        menu_BTN_sensors.setOnClickListener(view -> openGamePage(500, true));
+        menu_BTN_top10.setOnClickListener(view -> openScorePage());
+        menu_BTN_exitGame.setOnClickListener(view -> finish());
     }
 
     private void openScorePage() {

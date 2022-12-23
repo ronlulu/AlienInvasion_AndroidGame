@@ -11,8 +11,8 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         MyApp.context = getApplicationContext();
-        //MySPV3.init(this);
-        //MySignal.init(this);
+        MySharedPreferences.init(this);
+
     }
     public static Context getAppContext() {
         return MyApp.context;
