@@ -12,11 +12,15 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textview.MaterialTextView;
 
+import java.util.ArrayList;
+
 public class FragmentList extends Fragment {
 
     private MaterialTextView list_LBL_userScore;
     private MaterialButton list_BTN_showOnMap;
     private CallBack_UserProtocol callBack_userProtocol;
+
+    private ArrayList<ScoreData> topScores;
 
     public void setCallBack_userProtocol(CallBack_UserProtocol callBack_userProtocol) {
         this.callBack_userProtocol = callBack_userProtocol;
@@ -30,7 +34,6 @@ public class FragmentList extends Fragment {
         findViews(view);
         initViews();
 
-        //changeTitle("List Page");
         return view;
     }
 
@@ -39,12 +42,12 @@ public class FragmentList extends Fragment {
         list_BTN_showOnMap = view.findViewById(R.id.list_BTN_showOnMap);
     }
     private void initViews() {
-
+        topScores = new ArrayList<>();
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                user1Clicked();/////////////////////////////
-            }
+            public void onClick(View view)
+            {
+                user1Clicked();            }
         };
         list_BTN_showOnMap.setOnClickListener(onClickListener);
     }

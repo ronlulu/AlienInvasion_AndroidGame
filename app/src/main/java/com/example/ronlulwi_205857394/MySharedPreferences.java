@@ -36,9 +36,15 @@ public class MySharedPreferences {
 
     public int getInt(String key, int value){ return sharedPreferences.getInt(key, value); }
 
+    public void putString(String key, String value) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+    }
 
-
-
+    public String getString(String key, String def) {
+        return sharedPreferences.getString(key, def);
+    }
 
 
 }

@@ -5,7 +5,16 @@
     android:orientation="vertical"
     android:background="@color/material_dynamic_neutral_variant70">
 
-
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/score_LBL_lastScore"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="YOUR SCORE IS: 100"
+        android:textColor="#EA0000"
+        android:textStyle="bold"
+        android:textSize="40dp"
+        android:layout_weight="0.3"
+        />
 
     <FrameLayout
         android:id="@+id/panel_LAY_list"

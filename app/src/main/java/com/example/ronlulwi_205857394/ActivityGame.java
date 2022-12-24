@@ -24,7 +24,7 @@ public class ActivityGame extends AppCompatActivity {
     final int ROWS = 6;
     int DELAY = 500;
     boolean isActiveSensors;
-    public static final String KEY_DELAY = "KEY_SCORE";
+    public static final String KEY_DELAY = "KEY_DELAY";
     public static final String KEY_SENSOR = "KEY_SENSOR";
     private ExtendedFloatingActionButton game_BTN_right;
     private ExtendedFloatingActionButton game_BTN_left;
@@ -230,16 +230,25 @@ public class ActivityGame extends AppCompatActivity {
 
     private void takeDamage() {
         int lives = gameManager.getLives();
+        if(lives == 1)
+            gameOver(gameManager.getScore());
+
         if(lives > 0){
             game_IMG_hearts[lives-1].setVisibility(View.INVISIBLE);
             gameManager.setLives(-1);
         }
         gameManager.playHitSound(Position.types.UFO);
         gameManager.vibrate();
-        gameManager.setScore(-1);
         game_LBL_score.setText("score: " + gameManager.getScore());
         Toast.makeText(this, "Ouch!", Toast.LENGTH_SHORT).show();
 
+    }
+
+    private void gameOver(int score) {
+        Intent intent = new Intent(this, ActivityScore.class);
+        intent.putExtra(ActivityScore.KEY_SCORE, score);
+        startActivity(intent);
+        finish();
     }
 
     private void gainLives(){
