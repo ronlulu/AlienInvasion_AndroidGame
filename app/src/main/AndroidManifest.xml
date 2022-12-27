@@ -16,7 +16,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="Alien Invasion"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
+        android:supportsRtl="false"
         android:theme="@style/Theme.RonLulwi_205857394"
         tools:targetApi="31">
         <meta-data

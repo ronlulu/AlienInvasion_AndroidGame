@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/material_dynamic_neutral_variant70">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/score_IMG_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/score_LBL_lastScore"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:text="YOUR SCORE IS: 100"
-        android:textColor="#EA0000"
+        android:textColor="@color/teal_200"
         android:textStyle="bold"
-        android:textSize="40dp"
-        android:layout_weight="0.3"
+        android:textSize="35dp"
+        android:layout_weight="0.25"
         />
 
     <FrameLayout
@@ -21,21 +32,25 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
-        android:padding="32dp"
-        android:background="#368A2D"/>
+        >
+
+
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/panel_LAY_map"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:padding="32dp"
-        android:background="#9A7811"/>
+        android:layout_weight="1" />
+
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
+        android:padding="5dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
 
@@ -74,4 +89,6 @@
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</RelativeLayout>

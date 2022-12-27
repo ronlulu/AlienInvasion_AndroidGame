@@ -2,8 +2,13 @@ package com.example.ronlulwi_205857394;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,7 +25,7 @@ public class ActivityMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-
+        askGpsPermission();
         findViews();
         Glide.with(ActivityMenu.this)
                 .load("https://wallpapers.com/images/hd/alien-ship-on-the-mountain-ua912nnxda1wazx2.webp")
@@ -49,6 +54,7 @@ public class ActivityMenu extends AppCompatActivity {
 
     private void openScorePage() {
         Intent intent = new Intent(this, ActivityScore.class);
+        intent.putExtra(ActivityScore.KEY_LAST_CLASS_NAME, "ActivityMenu");
         startActivity(intent);
         finish();
     }
@@ -59,5 +65,10 @@ public class ActivityMenu extends AppCompatActivity {
         intent.putExtra(ActivityGame.KEY_SENSOR, sensors);
         startActivity(intent);
         finish();
+    }
+
+    private void askGpsPermission(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions((Activity) this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
     }
 }

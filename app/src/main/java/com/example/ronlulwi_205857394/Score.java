@@ -1,17 +1,17 @@
 package com.example.ronlulwi_205857394;
 
-public class ScoreData {
+public class Score {
     private int score;
     private double lat;
     private double lon;
 
-    public ScoreData() {}
+    public Score() {}
 
     public int getScore() {
         return score;
     }
 
-    public ScoreData setScore(int score) {
+    public Score setScore(int score) {
         this.score = score;
         return this;
     }
@@ -20,7 +20,7 @@ public class ScoreData {
         return lat;
     }
 
-    public ScoreData setLat(double lat) {
+    public Score setLat(double lat) {
         this.lat = lat;
         return this;
     }
@@ -29,14 +29,14 @@ public class ScoreData {
         return lon;
     }
 
-    public ScoreData setLon(double lon) {
+    public Score setLon(double lon) {
         this.lon = lon;
         return this;
     }
 
     @Override
     public String toString() {
-        return "ScoreData{" +
+        return "Score{" +
                 "score=" + score +
                 ", lat=" + lat +
                 ", lon=" + lon +

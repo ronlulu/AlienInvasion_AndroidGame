@@ -247,6 +247,8 @@ public class ActivityGame extends AppCompatActivity {
     private void gameOver(int score) {
         Intent intent = new Intent(this, ActivityScore.class);
         intent.putExtra(ActivityScore.KEY_SCORE, score);
+        intent.putExtra(ActivityScore.KEY_LAST_CLASS_NAME, "ActivityGame");
+
         startActivity(intent);
         finish();
     }

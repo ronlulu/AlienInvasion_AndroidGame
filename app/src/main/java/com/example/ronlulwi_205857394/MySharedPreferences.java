@@ -20,22 +20,6 @@ public class MySharedPreferences {
         sharedPreferences = context.getSharedPreferences(DB_FILE, Context.MODE_PRIVATE);
     }
 
-    public void putFloat(String key, float value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putFloat(key, value);
-        editor.apply();
-    }
-
-    public Float getFloat(String key, float value){ return sharedPreferences.getFloat(key, value); }
-
-    public void putInt(String key, int value){
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putInt(key, value);
-        editor.apply();
-    }
-
-    public int getInt(String key, int value){ return sharedPreferences.getInt(key, value); }
-
     public void putString(String key, String value) {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(key, value);
