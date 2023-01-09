@@ -1,23 +1,10 @@
 package com.example.ronlulwi_205857394;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.textview.MaterialTextView;
 
@@ -64,7 +51,6 @@ public class ActivityScore extends AppCompatActivity {
         Glide.with(ActivityScore.this)
                 .load("https://w0.peakpx.com/wallpaper/976/355/HD-wallpaper-alien-alien-art-cartoon-peace.jpg")
                 .into(score_IMG_background);
-        initViews();
 
 
             scoreList = scoreManager.getTopScoresFromSP();
@@ -72,8 +58,9 @@ public class ActivityScore extends AppCompatActivity {
                 scoreList = new ScoreList();
                 scoreManager.updateScore(scoreList, lastScore);
                 scoreManager.putTopScoresToSP(scoreList);
-            } else if (scoreManager.checkScore(scoreList, lastScore))
+            } else if (scoreManager.checkScore(scoreList, lastScore)){
                 scoreManager.putTopScoresToSP(scoreList);
+            }
 
         fragment_list.setCallBack_userProtocol(callBack_userProtocol);
     }

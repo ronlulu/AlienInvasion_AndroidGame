@@ -5,7 +5,7 @@ import android.content.SharedPreferences;
 
 public class MySharedPreferences {
 
-    private static final String DB_FILE = "DB_FILE";
+    private static final String APP_DB_FILE = "APP_DB_FILE";
     private static MySharedPreferences mySharedPreferences = null;
     private SharedPreferences sharedPreferences;
 
@@ -17,7 +17,7 @@ public class MySharedPreferences {
     }
 
     private MySharedPreferences(Context context){
-        sharedPreferences = context.getSharedPreferences(DB_FILE, Context.MODE_PRIVATE);
+        sharedPreferences = context.getSharedPreferences(APP_DB_FILE, Context.MODE_PRIVATE);
     }
 
     public void putString(String key, String value) {
